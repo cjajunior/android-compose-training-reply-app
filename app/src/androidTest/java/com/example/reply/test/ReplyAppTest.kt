@@ -4,6 +4,8 @@ import androidx.activity.ComponentActivity
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.example.reply.R.string.navigation_bottom
+import com.example.reply.R.string.navigation_drawer
+import com.example.reply.R.string.navigation_rail
 import com.example.reply.ui.ReplyApp
 import org.junit.Rule
 import org.junit.Test
@@ -23,6 +25,32 @@ class ReplyAppTest {
         // Bottom navigation is displayed
         composeTestRule.onNodeWithTagForStringId(
            navigation_bottom
+        ).assertExists()
+    }
+    @Test
+    fun mediumDevice_verifyUsingNavigationRail() {
+        // Set up medium window
+        composeTestRule.setContent {
+            ReplyApp(
+                windowSize = WindowWidthSizeClass.Medium
+            )
+        }
+        // Navigation rail is displayed
+        composeTestRule.onNodeWithTagForStringId(
+            navigation_rail
+        ).assertExists()
+    }
+    @Test
+    fun expandedDevice_verifyUsingNavigationDrawer() {
+        // Set up expanded window
+        composeTestRule.setContent {
+            ReplyApp(
+                windowSize = WindowWidthSizeClass.Expanded
+            )
+        }
+        // Navigation drawer is displayed
+        composeTestRule.onNodeWithTagForStringId(
+            navigation_drawer
         ).assertExists()
     }
 }
